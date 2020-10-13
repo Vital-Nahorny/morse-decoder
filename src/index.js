@@ -1,4 +1,5 @@
 const MORSE_TABLE = {
+    '': ' ',
     '.-':     'a',
     '-...':   'b',
     '-.-.':   'c',
@@ -38,7 +39,19 @@ const MORSE_TABLE = {
 };
 
 function decode(expr) {
-    // write your solution here
+    let str = expr.match(/.{1,10}/g);
+    let arr = [];
+    let a = '';
+  
+    for (let i = 0; i < str.length; i++) {
+      arr.push(str[i].replace(/11/g, "-").replace(/10/g, ".").replace(/00/g, "").replace(/\*/g, ""));
+    }
+  
+    for (let i = 0; i < arr.length; i++) {
+      a += `${MORSE_TABLE[arr[i]]}`;
+    }
+ 
+    return a;
 }
 
 module.exports = {
